@@ -98,6 +98,7 @@ function atualizarBola() {
   ) {
     bolaX = margem + raqueteLargura + bolaTamanho / 2;
     bolaVX *= -1;
+    aumentarVelocidadeAposRebatida();
   }
 
   // if (bolaX + bolaTamanho / 2 >= width - margem - raqueteLargura && bolaY >= computadorY && bolaY <= computadorY + raqueteAltura && bolaVX > 0) verifica se a bola colidiu com a raquete do computador. Se a bola atingir a posição da raquete do computador (bolaX + bolaTamanho / 2 >= width - margem - raqueteLargura) e estiver dentro dos limites verticais da raquete (bolaY >= computadorY && bolaY <= computadorY + raqueteAltura) e estiver se movendo em direção ao computador (bolaVX > 0), então a posição da bola é ajustada para que ela não ultrapasse a raquete, e a velocidade horizontal da bola (bolaVX) é invertida multiplicando-a por -1, fazendo com que a bola "quique" de volta para o lado do jogador.
@@ -109,6 +110,7 @@ function atualizarBola() {
   ) {
     bolaX = width - margem - raqueteLargura - bolaTamanho / 2;
     bolaVX *= -1;
+    aumentarVelocidadeAposRebatida();
   }
 
   // if (bolaX < 0) verifica se a bola ultrapassou a raquete do computador, o que significa que o jogador marcou um ponto. Se isso acontecer, a função marcarPontoComputador() é chamada para incrementar o placar do computador, e a função reiniciarBola() é chamada para resetar a posição da bola para o centro da tela e iniciar um novo lance. O mesmo processo ocorre se a bola ultrapassar a raquete do jogador, marcando um ponto para o computador.
@@ -133,9 +135,8 @@ function reiniciarBola() {
     direcaoY = direcaoY < 0 ? -0.3 : 0.3;
   }
 
-  const velocidade = 5;
-  bolaVX = velocidade * direcaoX;
-  bolaVY = velocidade * direcaoY;
+  bolaVX = VELOCIDADE_INICIAL_BOLA * direcaoX;
+  bolaVY = VELOCIDADE_INICIAL_BOLA * direcaoY;
 }
 
 // A função desenharElementos é responsável por desenhar os elementos visuais do jogo, como as raquetes, a bola e a linha central. Ela utiliza funções de desenho da biblioteca p5.js para criar uma representação visual do jogo na tela.
